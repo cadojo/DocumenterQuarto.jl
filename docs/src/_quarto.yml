@@ -1,31 +1,57 @@
 project:
-    type: book
-    output-dir: ../build
+  type: book
+  output-dir: "../build"
 
 book:
-    title: "DocumenterQuarto"
-    author: 
-        name: "Joey Carpinelli"
-        email: "joey@loopy.codes"
-    date: "2024-12-31"
-    chapters:
-        - index.md
-        - api/index.qmd 
-    sidebar: 
-        search: true
+  title: "DocumenterQuarto.jl"
+  author: "Joseph Carpinelli"
+  date: today
+  chapters:
+    - index.md
+    - api/index.qmd 
+
+  navbar: 
+    background: primary
+    right: 
+      - text: Version
+        menu: 
+          - text: dev
+          
+  search: 
+    location: sidebar
+    type: textbox
+
+  twitter-card: true
+  open-graph: true
+  repo-url: https://github.com/cadojo/DocumenterQuarto.jl
+  repo-actions: [issue]
+
 
 toc-title: "Table of Contents"
 
 execute:
-    echo: false
-    output: true
-    cache: false
-    freeze: false
+  echo: false
+  output: true
+  cache: false
+  freeze: false
 
 bibliography: references.bib
 
 format:
-    html:
-        theme:
-            light: flatly
-            dark: darkly
+  html:
+    include-in-header: 
+      file: _static/versions.html
+    code-link: true
+    number-sections: false
+    css: _static/style.css
+    resources: 
+      - _static/style.css
+      - _static/versions.html
+      - _static/theme.scss
+    theme: 
+      light: 
+        - _static/theme.scss
+        - default
+      dark: 
+        - _static/theme.scss
+        - darkly

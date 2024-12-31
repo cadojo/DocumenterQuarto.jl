@@ -1,4 +1,4 @@
-# `DocumenterQuarto`
+# 📚🌐 Julia Package Documentation via Quarto
 
 *Use [`Documenter`](https://GitHub.com/JuliaDocs/Documenter.jl) syntax with [Quarto](https://quarto.org).*
 
@@ -39,9 +39,12 @@ If you don't already have documentation for your package, use the following step
 1.  Navigate to the **root directory** of your Julia package.
 2.  Execute the code below.
 
-``` sh
-julia -e 'import Pkg; Pkg.add(url="https://github.com/cadojo/DocumenterQuarto.jl")'
-julia -e 'import DocumenterQuarto; DocumenterQuarto.generate()'
+``` julia
+import Pkg
+Pkg.add(url="https://github.com/cadojo/DocumenterQuarto.jl")
+
+import DocumenterQuarto
+DocumenterQuarto.generate()
 ```
 
 ### Documenting an Existing Package

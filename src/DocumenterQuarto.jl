@@ -30,9 +30,12 @@ Generate a documentation site from a default template.
 function generate(; title=nothing, type="book", api="api")
 
     name::Union{String,Nothing} = nothing
+    uuid::Union{String,Nothing} = nothing
     if isnothing(title)
         if isfile("Project.toml")
-            name = TOML.parsefile("Project.toml")["name"]
+            project = TOML.parsefile("Project.toml")
+            name = project["name"]
+            uuid = project["uuid"]
         end
 
         title = isnothing(name) ? "Documentation" : name
@@ -50,7 +53,7 @@ function generate(; title=nothing, type="book", api="api")
         capture = IOCapture.capture() do
             run(`$(git()) remote get-url origin`)
         end
-        strip(capture.output)
+        replace(strip(capture.output), ".git" => "", "https://" => "", "http://" => "", "www." => "")
     end
 
     author = let
@@ -162,6 +165,7 @@ function generate(; title=nothing, type="book", api="api")
             Quarto = "d7167be5-f61b-4dc9-b75c-ab62374668c5"
             DocumenterQuarto = "73f83fcb-c367-40db-89b6-8fd94701aaf2"
             IJulia = "7073ff75-c697-5162-941a-fcdaad2a7d2a"
+            $name = "$uuid"
             """
         )
     end
@@ -254,7 +258,7 @@ function process_headers(markdown)
     for (index, item) in enumerate(markdown.content)
         if item isa Markdown.Header
             newlevel = min(level(item) + 2, 6)
-            markdown.content[index] = Markdown.Header{newlevel}(item.text * " {.unnumbered}")
+            markdown.content[index] = Markdown.Header{newlevel}(vcat(item.text, " {.unnumbered}"))
         elseif :content in propertynames(item)
             markdown.content[index] = process_headers(item)
         end
