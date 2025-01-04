@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Joey Carpinelli">
-<meta name="dcterms.date" content="2025-01-02">
+<meta name="author" content="Joseph Carpinelli">
+<meta name="dcterms.date" content="2025-01-04">
 
-<title>DocumenterQuarto</title>
+<title>DocumenterQuarto.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,8 +76,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4f6263ad221f763a4834f521a0a25b97.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-022d0653e62d99952369f70845bfc6e9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-4652d3942eebd83485486daeb61cfdaf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2ce64d22e8e295af18bed524d981da45.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -90,7 +90,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -107,18 +106,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<meta property="og:title" content="DocumenterQuarto.jl">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="DocumenterQuarto.jl">
+<meta name="twitter:title" content="DocumenterQuarto.jl">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DocumenterQuarto.jl</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Version</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-version">    
+        <li class="dropdown-header">EMPTY</li>
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/cadojo/DocumenterQuarto.jl" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Overview</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,17 +161,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">DocumenterQuarto</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -148,14 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./api/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reference</span></span></a>
+  <a href="./api/index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reference</span></a>
   </div>
 </li>
     </ul>
@@ -168,28 +191,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#documenterquarto" id="toc-documenterquarto" class="nav-link active" data-scroll-target="#documenterquarto"><span class="header-section-number">1</span> <code>DocumenterQuarto</code></a>
+  <li><a href="#documenterquarto" id="toc-documenterquarto" class="nav-link active" data-scroll-target="#documenterquarto"><code>DocumenterQuarto</code></a>
   <ul class="collapse">
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">1.1</span> Overview</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.2</span> Installation</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage"><span class="header-section-number">1.3</span> Usage</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a>
   <ul class="collapse">
-  <li><a href="#documenting-a-new-package" id="toc-documenting-a-new-package" class="nav-link" data-scroll-target="#documenting-a-new-package"><span class="header-section-number">1.3.1</span> Documenting a New Package</a></li>
-  <li><a href="#documenting-an-existing-package" id="toc-documenting-an-existing-package" class="nav-link" data-scroll-target="#documenting-an-existing-package"><span class="header-section-number">1.3.2</span> Documenting an Existing Package</a></li>
-  <li><a href="#quarto-and-julia-environments" id="toc-quarto-and-julia-environments" class="nav-link" data-scroll-target="#quarto-and-julia-environments"><span class="header-section-number">1.3.3</span> Quarto and Julia Environments</a></li>
-  <li><a href="#compatibility-with-liveserver" id="toc-compatibility-with-liveserver" class="nav-link" data-scroll-target="#compatibility-with-liveserver"><span class="header-section-number">1.3.4</span> Compatibility with <code>LiveServer</code></a></li>
+  <li><a href="#documenting-a-new-package" id="toc-documenting-a-new-package" class="nav-link" data-scroll-target="#documenting-a-new-package">Documenting a New Package</a></li>
+  <li><a href="#documenting-an-existing-package" id="toc-documenting-an-existing-package" class="nav-link" data-scroll-target="#documenting-an-existing-package">Documenting an Existing Package</a></li>
+  <li><a href="#quarto-and-julia-environments" id="toc-quarto-and-julia-environments" class="nav-link" data-scroll-target="#quarto-and-julia-environments">Quarto and Julia Environments</a></li>
+  <li><a href="#compatibility-with-liveserver" id="toc-compatibility-with-liveserver" class="nav-link" data-scroll-target="#compatibility-with-liveserver">Compatibility with <code>LiveServer</code></a></li>
   </ul></li>
-  <li><a href="#alternatives" id="toc-alternatives" class="nav-link" data-scroll-target="#alternatives"><span class="header-section-number">1.4</span> Alternatives</a></li>
+  <li><a href="#alternatives" id="toc-alternatives" class="nav-link" data-scroll-target="#alternatives">Alternatives</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/cadojo/DocumenterQuarto.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DocumenterQuarto</h1>
+<h1 class="title">DocumenterQuarto.jl</h1>
 </div>
 
 
@@ -199,14 +222,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Joey Carpinelli <a href="mailto:joey@loopy.codes" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+             <p>Joseph Carpinelli </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 2, 2025</p>
+      <p class="date">January 4, 2025</p>
     </div>
   </div>
   
@@ -218,27 +241,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="documenterquarto" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> <code>DocumenterQuarto</code></h1>
+<section id="documenterquarto" class="level1">
+<h1><code>DocumenterQuarto</code></h1>
 <p><em>Use <a href="https://GitHub.com/JuliaDocs/Documenter.jl"><code>Documenter</code></a> syntax with <a href="https://quarto.org">Quarto</a>.</em></p>
-<section id="overview" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> Overview</h2>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p><em>What is <code>DocumenterQuarto</code>?</em></p>
 <p><a href="https://quarto.org">Quarto</a> is a single-source multi-target technical publishing system which can render HTML, PDF, DOCX, and many (many, many) other targets. The source format for Quarto is a flavor of Markdown that allows for executing code, including Julia code! This allows for documentation generation alongside executable code examples.</p>
 <p><code>DocumenterQuarto</code> generates templates for Quarto websites (<a href="https://quarto.org/docs/books/">books</a>, more precisely) which automatically document your Julia package, as well as utility functions to automatically parse Julia’s <code>@doc</code> output into Quarto Markdown. The workflow for rendering and publishing your documentation is identical to that of <code>Documenter</code>, so your CI should not need to change too much!</p>
 </section>
-<section id="installation" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.2</span> Installation</h2>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p><em>Choose one of the two lines below!</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">add</span>(<span class="st">"DocumenterQuarto"</span>)  <span class="co"># in Julia code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pkg<span class="op">&gt;</span> add DocumenterQuarto    <span class="co"># in Julia's REPL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You will also need to download <a href="https://quarto.org/docs/get-started/">Quarto</a>, and install Jupyter. The simplest option for installing Jupyter is often: <code>python -m pip install --user jupyter</code>.</p>
 </section>
-<section id="usage" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="usage"><span class="header-section-number">1.3</span> Usage</h2>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
 <p><em>Using <code>DocumenterQuarto</code> for your package.</em></p>
-<section id="documenting-a-new-package" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="documenting-a-new-package"><span class="header-section-number">1.3.1</span> Documenting a New Package</h3>
+<section id="documenting-a-new-package" class="level3">
+<h3 class="anchored" data-anchor-id="documenting-a-new-package">Documenting a New Package</h3>
 <p>If you don’t already have documentation for your package, use the following steps to generate a new documentation website.</p>
 <ol type="1">
 <li>Navigate to the <strong>root directory</strong> of your Julia package.</li>
@@ -250,8 +273,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">DocumenterQuarto</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>DocumenterQuarto.<span class="fu">generate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="documenting-an-existing-package" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="documenting-an-existing-package"><span class="header-section-number">1.3.2</span> Documenting an Existing Package</h3>
+<section id="documenting-an-existing-package" class="level3">
+<h3 class="anchored" data-anchor-id="documenting-an-existing-package">Documenting an Existing Package</h3>
 <p>If your package already has documentation, it is likely that the migration to a Quarto-based website will be easy! At this time, the simplest approach is likely to move your existing documentation, generate a new documentation site with the instructions above, and then move select Markdown files from your old documentation back into your new <code>docs/src</code> directory. There are some tips that are helpful to keep in mind.</p>
 <ol type="1">
 <li>In <code>Documenter</code>, you use <code>@example</code> to execute (and show) a block of code. In Quarto, this is provided by <a href="https://quarto.org/docs/computations/julia.html">execution options</a> and code blocks. In most cases, you can simply replace <code>@example</code> with <code>{julia}</code> and the code should execute when your documentation is rendered!</li>
@@ -259,24 +282,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>To have executable code in your Markdown, you have to use the <code>.qmd</code> file extension.</li>
 </ol>
 </section>
-<section id="quarto-and-julia-environments" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="quarto-and-julia-environments"><span class="header-section-number">1.3.3</span> Quarto and Julia Environments</h3>
+<section id="quarto-and-julia-environments" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-and-julia-environments">Quarto and Julia Environments</h3>
 <p>Quarto may automatically find a Julia environment. If you run into environment issues while rendering, try the following code.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pkg</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">activate</span>(<span class="st">"docs"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">develop</span>(path<span class="op">=</span><span class="st">"."</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Pkg</span>.<span class="fu">instantiate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="compatibility-with-liveserver" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="compatibility-with-liveserver"><span class="header-section-number">1.3.4</span> Compatibility with <code>LiveServer</code></h3>
+<section id="compatibility-with-liveserver" class="level3">
+<h3 class="anchored" data-anchor-id="compatibility-with-liveserver">Compatibility with <code>LiveServer</code></h3>
 <p>This workflow is fully compatible with <code>LiveServer</code>! If using the <code>make.jl</code> script generated with <code>DocumenterQuarto.generate</code>, then you can serve the documentation locally with the following code.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LiveServer</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">servedocs</span>(skip_dir<span class="op">=</span><span class="st">"docs/src/.quarto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="alternatives" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="alternatives"><span class="header-section-number">1.4</span> Alternatives</h2>
+<section id="alternatives" class="level2">
+<h2 class="anchored" data-anchor-id="alternatives">Alternatives</h2>
 <p><em>Other excellent documentation packages.</em></p>
 <p>There are plenty of documentation tools and packages in the Julia ecosystem; most of them are more robust and have more developer support than this package! Only a couple of alternative packages are shown below.</p>
 <ul>
@@ -855,7 +878,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./api/index.html" class="pagination-link" aria-label="Reference">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reference</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-title">Reference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -864,4 +887,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/cadojo/DocumenterQuarto.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
