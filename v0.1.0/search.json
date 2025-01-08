@@ -1,0 +1,102 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DocumenterQuarto.jl",
+    "section": "",
+    "text": "📚🌐 Julia Package Documentation via Quarto\nUse Documenter syntax with Quarto.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "DocumenterQuarto.jl",
+    "section": "Overview",
+    "text": "Overview\nWhat is DocumenterQuarto?\nQuarto is a single-source multi-target technical publishing system which can render HTML, PDF, DOCX, and many (many, many) other targets. The source format for Quarto is a flavor of Markdown that allows for executing code, including Julia code! This allows for documentation generation alongside executable code examples.\nDocumenterQuarto generates templates for Quarto websites (books, more precisely) which automatically document your Julia package, as well as utility functions to automatically parse Julia’s @doc output into Quarto Markdown. The workflow for rendering and publishing your documentation is identical to that of Documenter, so your CI should not need to change too much!",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "DocumenterQuarto.jl",
+    "section": "Installation",
+    "text": "Installation\nChoose one of the two lines below!\nPkg.add(\"DocumenterQuarto\")  # in Julia code\npkg&gt; add DocumenterQuarto    # in Julia's REPL\nYou will also need to download Quarto, and install Jupyter. The simplest option for installing Jupyter is often: python -m pip install --user jupyter.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "DocumenterQuarto.jl",
+    "section": "Usage",
+    "text": "Usage\nUsing DocumenterQuarto for your package.\n\nDocumenting a New Package\nIf you don’t already have documentation for your package, use the following steps to generate a new documentation website.\n\nNavigate to the root directory of your Julia package.\nExecute the code below.\n\nimport Pkg\nPkg.add(url=\"https://github.com/cadojo/DocumenterQuarto.jl\")\n\nimport DocumenterQuarto\nDocumenterQuarto.generate()\n\n\nDocumenting an Existing Package\nIf your package already has documentation, it is likely that the migration to a Quarto-based website will be easy! At this time, the simplest approach is likely to move your existing documentation, generate a new documentation site with the instructions above, and then move select Markdown files from your old documentation back into your new docs/src directory. There are some tips that are helpful to keep in mind.\n\nIn Documenter, you use @example to execute (and show) a block of code. In Quarto, this is provided by execution options and code blocks. In most cases, you can simply replace @example with {julia} and the code should execute when your documentation is rendered!\nAll codes are executed in Main, and are scoped to each individual file.\nTo have executable code in your Markdown, you have to use the .qmd file extension.\n\n\n\nQuarto and Julia Environments\nQuarto may automatically find a Julia environment. If you run into environment issues while rendering, try the following code.\nimport Pkg\nPkg.activate(\"docs\")\nPkg.develop(path=\".\")\nPkg.instantiate()\n\n\nCompatibility with LiveServer\nThis workflow is fully compatible with LiveServer! If using the make.jl script generated with DocumenterQuarto.generate, then you can serve the documentation locally with the following code.\nusing LiveServer\n\nservedocs(skip_dir=\"docs/src/.quarto\")",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#alternatives",
+    "href": "index.html#alternatives",
+    "title": "DocumenterQuarto.jl",
+    "section": "Alternatives",
+    "text": "Alternatives\nOther excellent documentation packages.\nThere are plenty of documentation tools and packages in the Julia ecosystem; most of them are more robust and have more developer support than this package! Only a couple of alternative packages are shown below.\n\nDocumenter.jl is the primary documentation package in the Julia ecosystem.\nQuartoDocBuilder.jl is the first Quarto documentation package for Julia, and provides a simpler out-of-the-box Quarto project which looks excellent.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "api/index.html",
+    "href": "api/index.html",
+    "title": "Reference",
+    "section": "",
+    "text": "generate\nDocstrings for DocumenterQuarto.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/index.html#generate",
+    "href": "api/index.html#generate",
+    "title": "Reference",
+    "section": "",
+    "text": "generate(; title, type, api)\nGenerate a documentation site from a default template.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/index.html#documenterquarto",
+    "href": "api/index.html#documenterquarto",
+    "title": "Reference",
+    "section": "DocumenterQuarto",
+    "text": "DocumenterQuarto\n\n\n\n\n\n\nUtilities and templates for documenting your Julia package with Quarto!\n\nExports\n\nautodoc\ndoc",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/index.html#autodoc",
+    "href": "api/index.html#autodoc",
+    "title": "Reference",
+    "section": "autodoc",
+    "text": "autodoc\n\n\n\n\n\n\nautodoc(mod, symbols; delimiter)\nAutomatically process and return documentation for symbols in the provided module. If no symbols are provided, all exported symbols are used. The delimiter keyword argument is printed in between each documented name.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/index.html#doc",
+    "href": "api/index.html#doc",
+    "title": "Reference",
+    "section": "doc",
+    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.\ndoc(any)\nReturn the documentation string associated with the provided value, with substitutions to allow for compatibility with Quarto.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  }
+]
