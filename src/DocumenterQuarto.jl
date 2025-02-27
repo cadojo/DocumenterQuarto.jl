@@ -49,6 +49,8 @@ function generate(; title=nothing, type="book", api="api")
 
     _quarto = joinpath(src, "_quarto.yml")
 
+    _static = joinpath(src, "_static")
+
     repo = let
         capture = IOCapture.capture() do
             run(`$(git()) remote get-url origin`)
@@ -70,13 +72,40 @@ function generate(; title=nothing, type="book", api="api")
         strip(capture.output)
     end
 
+    isdir(_static) || mkdir(_static)
+    style_css = joinpath(_static, "style.css")
+    theme_scss = joinpath(_static, "theme.scss")
+    versions_html = joinpath(_static, "versions.html")
+
+    isfile(style_css) || cp(joinpath(@__DIR__, "..", "docs", "src", "_static", "style.css"), style_css)
+    isfile(theme_scss) || open(theme_scss, "w") do file
+        write(
+            file,
+            """
+            /*-- scss:defaults --*/
+
+            \$primary: darken(#$(bytes2hex(rand(UInt8, 3))), 10%);
+            """
+        )
+    end
+    isfile(versions_html) || begin
+        cp(joinpath(@__DIR__, "..", "docs", "src", "_static", "versions.html"), versions_html)
+        content = open(versions_html, "r") do file
+            read(file, String)
+        end
+        content = replace(content, "cadojo/DocumenterQuarto.jl" => replace(repo, "github.com/"=>"", ".git"=>""))
+        open(versions_html, "w") do file
+            write(file, content)
+        end
+    end
+
     isfile(_quarto) || open(_quarto, "w") do io
         write(
             io,
             """
             project:
                 type: $type
-                output-dir: ../build
+                output-dir: "../build"
 
             $type:
                 title: "$title"
@@ -88,6 +117,22 @@ function generate(; title=nothing, type="book", api="api")
                     - index.md
                     $(isnothing(api) ? "" : "- api/index.qmd") 
 
+                navbar: 
+                    background: primary
+                    right: 
+                    - text: Version
+                      menu: 
+                        - text: dev
+                    
+                search: 
+                    location: sidebar
+                    type: textbox
+
+                twitter-card: true
+                open-graph: true
+                repo-url: https://$(replace(repo, ".git"=>""))
+                repo-actions: [issue]
+            
             toc-title: "Table of Contents"
 
             execute:
@@ -100,11 +145,24 @@ function generate(; title=nothing, type="book", api="api")
 
             format:
                 html:
-                    theme:
-                        light: flatly
-                        dark: darkly
-            """
-        )
+                    include-in-header: 
+                        file: _static/versions.html
+                    code-link: true
+                    number-sections: false
+                    css: _static/style.css
+                    resources: 
+                        - _static/style.css
+                        - _static/versions.html
+                        - _static/theme.scss
+                    theme: 
+                        light: 
+                            - _static/theme.scss
+                            - default
+                        dark: 
+                            - _static/theme.scss
+                            - darkly
+                """
+                )
     end
 
     references = joinpath(src, "references.bib")
@@ -148,7 +206,7 @@ function generate(; title=nothing, type="book", api="api")
                     """
                     # Overview
 
-                    _To do: add a description of the project!_
+                    _TODO: add a description of the project!_
                     """
                 )
             end
@@ -258,7 +316,9 @@ function process_headers(markdown)
     for (index, item) in enumerate(markdown.content)
         if item isa Markdown.Header
             newlevel = min(level(item) + 2, 6)
-            markdown.content[index] = Markdown.Header{newlevel}(vcat(item.text, " {.unnumbered}"))
+            if !endswith(item.text, "{.unnumbered}")
+                markdown.content[index] = Markdown.Header{newlevel}(vcat(item.text, " {.unnumbered}"))
+            end
         elseif :content in propertynames(item)
             markdown.content[index] = process_headers(item)
         end
