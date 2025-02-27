@@ -31,10 +31,7 @@ jobs:
       - name: Install dependencies
         run: julia -e 'using Pkg; Pkg.add(url="https://github.com/cadojo/ExperimentalTagBot.jl"); Pkg.add("GitHub"); Pkg.instantiate()'
       - name: Debug Permissions
-        run: |
-        curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository }}
+        run: 'curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{ github.repository }}'
       - name: Build and deploy
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
