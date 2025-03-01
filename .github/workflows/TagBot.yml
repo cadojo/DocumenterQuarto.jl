@@ -28,25 +28,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' || github.actor == 'JuliaTagBot'
     runs-on: ubuntu-latest
     steps:
-      - name: Tag AstrodynamicalCalculations.jl
-        uses: JuliaRegistries/TagBot@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ssh: ${{ secrets.DOCUMENTER_KEY }}
-          subdir: lib/AstrodynamicalCalculations
-      - name: Tag AstrodynamicalModels.jl
-        uses: JuliaRegistries/TagBot@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ssh: ${{ secrets.DOCUMENTER_KEY }}
-          subdir: lib/AstrodynamicalModels
-      - name: Tag AstrodynamicalSolvers.jl
-        uses: JuliaRegistries/TagBot@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ssh: ${{ secrets.DOCUMENTER_KEY }}
-          subdir: lib/AstrodynamicalSolvers
-      - name: Tag GeneralAstrodynamics.jl
+      - name: Generate Releases
         uses: JuliaRegistries/TagBot@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

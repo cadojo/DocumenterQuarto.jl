@@ -4,24 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-subpackages:
-    name: Register Subpackages
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        group:
-          - AstrodynamicalCalculations
-          - AstrodynamicalModels
-          - AstrodynamicalSolvers
-    steps:
-      - uses: peter-evans/commit-comment@v3
-        with:
-          body: |
-            @JuliaRegistrator register subdir="lib/${{ matrix.group }}"
-
-            This comment was generated with `commit-comment` and [`Register.yml`](/.github/workflows/Register.yml).
-
-  release-superpackage:
+  register:
     name: Register Superpackage
     runs-on: ubuntu-latest
     steps:
