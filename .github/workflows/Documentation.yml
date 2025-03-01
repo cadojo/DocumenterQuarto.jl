@@ -3,30 +3,65 @@ name: Documentation
 on:
   push:
     branches:
-      - main # update to match your development branch (master, main, dev, trunk, ...)
+      - main
     tags: "*"
-  pull_request:
+  workflow_dispatch:
 
 jobs:
-  build:
-    permissions:
-      actions: write
-      contents: write
-      pull-requests: read
-      statuses: write
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v2
-        with:
-          version: "1"
-      - uses: quarto-dev/quarto-actions/setup@v2
-      - name: Install Jupyter
-        run: python -m pip install jupyter
-      - uses: julia-actions/cache@v2
-      - name: Install dependencies
-        run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate(); Pkg.build()'
+      - uses: actions/checkout@v2
+
+      - uses: julia-actions/setup-julia@latest
+
+      #
+      # AstrodynamicalCalculations Documentation
+      #
+
+      - name: Install Documentation Dependencies for AstrodynamicalCalculations
+        run: julia --project=lib/AstrodynamicalCalculations/docs -e 'using Pkg; Pkg.develop(PackageSpec(path = joinpath("lib", "AstrodynamicalCalculations"))); Pkg.instantiate()'
+
+      - name: Build and deploy AstrodynamicalCalculations
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+        working-directory: lib/AstrodynamicalCalculations
+        run: julia --project=docs/ docs/make.jl
+
+      #
+      # AstrodynamicalModels Documentation
+      #
+
+      - name: Install Documentation Dependencies for AstrodynamicalModels
+        run: julia --project=lib/AstrodynamicalModels/docs -e 'using Pkg; Pkg.develop(PackageSpec(path = joinpath("lib", "AstrodynamicalModels"))); Pkg.instantiate()'
+
+      - name: Build and deploy AstrodynamicalModels
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+        working-directory: lib/AstrodynamicalModels
+        run: julia --project=docs/ docs/make.jl
+
+      #
+      # AstrodynamicalSolvers Documentation
+      #
+
+      - name: Install Documentation Dependencies for AstrodynamicalSolvers
+        run: julia --project=lib/AstrodynamicalSolvers/docs -e 'using Pkg; Pkg.develop(PackageSpec(path = joinpath("lib", "AstrodynamicalSolvers"))); Pkg.instantiate()'
+
+      - name: Build and deploy AstrodynamicalSolvers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
+        working-directory: lib/AstrodynamicalSolvers
+        run: julia --project=docs/ docs/make.jl
+
+      - name: Install Documentation Dependencies
+        run: julia --project=docs -e 'using Pkg; Pkg.develop(PackageSpec(path = @__DIR__)); Pkg.instantiate()'
+
       - name: Build and deploy
         env:
-          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }} # If authenticating with SSH deploy key
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For authentication with GitHub Actions token
+          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }} # For authentication with SSH deploy key
         run: julia --project=docs/ docs/make.jl
