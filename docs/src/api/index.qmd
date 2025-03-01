@@ -12,7 +12,7 @@ using DocumenterQuarto
 ```{julia}
 #| echo: false
 #| output: asis
-DocumenterQuarto.doc(DocumenterQuarto.generate)
+DocumenterQuarto.doc(DocumenterQuarto, :generate)
 ```
 
 ```{julia}

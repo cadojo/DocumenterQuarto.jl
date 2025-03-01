@@ -291,26 +291,6 @@ function autodoc(mod::Module, symbols::Symbol...; delimiter=md"{{< pagebreak >}}
     return Markdown.MD(map(name -> Markdown.MD(doc(mod, name), delimiter), svec)...)
 end
 
-"""
-Automatically process and return documentation for all provided names in the 
-current module.
-"""
-macro autodoc(lvalues...)
-    return quote
-        autodoc(@__MODULE__, $(lvalues...))
-    end
-end
-
-"""
-Automatically process and return documentation for the iterable of provided
-names in the current module.
-"""
-macro autodoc(lvalues)
-    return quote
-        autodoc(@__MODULE__, $(lvalues)...)
-    end
-end
-
 level(::Markdown.Header{T}) where {T} = T
 
 function process_headers(markdown)
@@ -398,14 +378,6 @@ function doc(mod::Module, sym::Symbol; header::Int = 2)
         process(docmkd),
         Markdown.parse(":::")
     )
-end
-
-"""
-Return the documentation string associated with the provided value, with 
-substitutions to allow for compatibility with [Quarto](https://quarto.org).
-"""
-macro doc(any)
-    esc(:(DocumenterQuarto.doc(@__MODULE__, $(QuoteNode(any)))))
 end
 
 end # module QuartoDocumenter
