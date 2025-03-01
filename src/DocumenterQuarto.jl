@@ -15,6 +15,7 @@ import TOML
 using IOCapture
 using Git
 using Dates
+using REPL
 
 
 using DocStringExtensions
@@ -287,7 +288,7 @@ module. If no symbols are provided, all exported symbols are used. The
 """
 function autodoc(mod::Module, symbols::Symbol...; delimiter=md"{{< pagebreak >}}")
     svec = isempty(symbols) ? Base.names(mod) : symbols
-    return Markdown.MD(map(name -> Markdown.MD(doc(getproperty(mod, name)), delimiter), svec)...)
+    return Markdown.MD(map(name -> Markdown.MD(doc(mod, name), delimiter), svec)...)
 end
 
 """
@@ -316,7 +317,7 @@ function process_headers(markdown)
     for (index, item) in enumerate(markdown.content)
         if item isa Markdown.Header
             newlevel = min(level(item) + 2, 6)
-            if !endswith(item.text, "{.unnumbered}")
+            if !("{.unnumbered}" in item.text)
                 markdown.content[index] = Markdown.Header{newlevel}(vcat(item.text, " {.unnumbered}"))
             end
         elseif :content in propertynames(item)
@@ -387,33 +388,24 @@ end
 Return the documentation string associated with the provided name, with 
 substitutions to allow for compatibility with [Quarto](https://quarto.org).
 """
-function doc(mod::Module, sym::Symbol)
+function doc(mod::Module, sym::Symbol; header::Int = 2)
     parent = which(mod, sym)
-    docmkd = Base.Docs.doc(Docs.Binding(parent, sym))
-    return doc(docmkd)
+    docmkd = Base.Docs.doc(Base.Docs.Binding(parent, sym))
+
+    return Markdown.MD(
+        Markdown.Header{header}("`$sym`"),
+        Markdown.parse(":::{.callout appearance=\"minimal\"}"),
+        process(docmkd),
+        Markdown.parse(":::")
+    )
 end
 
 """
 Return the documentation string associated with the provided value, with 
 substitutions to allow for compatibility with [Quarto](https://quarto.org).
 """
-function doc(any::Any)
-    docmkd = process(
-        Base.Docs.doc(any)
-    )
-
-    return Markdown.MD(
-        Markdown.parse(
-            """
-            ## `$(nameof(any))`
-            :::{.callout appearance="minimal"}
-            """
-        ),
-        docmkd,
-        md"""
-        :::
-        """
-    )
+macro doc(any)
+    esc(:(DocumenterQuarto.doc(@__MODULE__, $(QuoteNode(any)))))
 end
 
 end # module QuartoDocumenter
