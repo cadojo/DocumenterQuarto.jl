@@ -94,7 +94,7 @@
     "href": "api/index.html#doc",
     "title": "Reference",
     "section": "doc",
-    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.\ndoc(any)\nReturn the documentation string associated with the provided value, with substitutions to allow for compatibility with Quarto.",
+    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym; header)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
     ]
