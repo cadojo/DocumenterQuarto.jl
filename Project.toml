@@ -1,7 +1,7 @@
 name = "DocumenterQuarto"
 uuid = "73f83fcb-c367-40db-89b6-8fd94701aaf2"
 authors = ["Joey Carpinelli <joey@loopy.codes>"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -24,7 +24,7 @@ IOCapture = "0.2"
 InteractiveUtils = "1"
 Markdown = "1"
 Quarto = "1"
-REPL = "1.11.0"
+REPL = "1"
 TOML = "1"
 julia = "1"
 
