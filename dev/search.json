@@ -84,7 +84,7 @@
     "href": "api/index.html#autodoc",
     "title": "Reference",
     "section": "autodoc",
-    "text": "autodoc\n\n\n\n\n\n\nautodoc(mod, symbols; delimiter)\nAutomatically process and return documentation for symbols in the provided module. If no symbols are provided, all exported symbols are used. The delimiter keyword argument is printed in between each documented name.",
+    "text": "autodoc\n\n\n\n\n\n\nautodoc(mod, symbols; delimiter)\nAutomatically process and return documentation for symbols in the provided module. If no symbols are provided, all exported symbols are used. The delimiter keyword argument is printed in between each documented name.\n\nExample\nimport LinearAlgebra\nDocumenterQuarto.autodoc(LinearAlgebra)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
     ]
@@ -94,7 +94,7 @@
     "href": "api/index.html#doc",
     "title": "Reference",
     "section": "doc",
-    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym; header)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.",
+    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym; header)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.\n\nExample\ndoc(Main, :Int)\n\n\n\n\n\nReturn documentation for a Julia symbol as Quarto Markdown.\n\nExample\nThis macro takes the output of Base.Docs.@doc (available by-default in Julia code) and calls DocumenterQuarto.process on the result to convert the docstring to Quarto Markdown.\nimport DocumenterQuarto: @doc\n\n@doc @time",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
     ]

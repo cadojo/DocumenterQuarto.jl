@@ -361,6 +361,11 @@ window.onload = function () {
 <div class="callout-body-container">
 <div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autodoc</span>(mod, symbols; delimiter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Automatically process and return documentation for symbols in the provided module. If no symbols are provided, all exported symbols are used. The <code>delimiter</code> keyword argument is printed in between each documented name.</p>
+<section id="example" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example">Example</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>DocumenterQuarto.<span class="fu">autodoc</span>(<span class="bu">LinearAlgebra</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </div>
 </div>
 </div>
@@ -374,14 +379,26 @@ window.onload = function () {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">doc</span>(mod, sym; header)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">doc</span>(mod, sym; header)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the documentation string associated with the provided name, with substitutions to allow for compatibility with <a href="https://quarto.org">Quarto</a>.</p>
+<section id="example-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-1">Example</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">doc</span>(<span class="bu">Main</span>, <span class="op">:</span><span class="dt">Int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </div>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
+<p>Return documentation for a Julia symbol as Quarto Markdown.</p>
+<section id="example-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-2">Example</h4>
+<p>This macro takes the output of <code>Base.Docs.@doc</code> (available by-default in Julia code) and calls <code>DocumenterQuarto.process</code> on the result to convert the docstring to Quarto Markdown.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">DocumenterQuarto</span>: @doc</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="pp">@time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
