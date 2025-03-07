@@ -50,3 +50,21 @@ end
     @test DocumenterQuarto.autodoc(Values) isa Markdown.MD
     @test DocumenterQuarto.@doc(_string_instance) isa Markdown.MD
 end
+
+"""
+Returns "Int".
+"""
+f(::Int) = "Int"
+
+"""
+Returns "String".
+"""
+f(::String) = "String"
+
+@testset "Macros" begin
+    @test DocumenterQuarto.@doc(_type_instance) == Base.Docs.@doc(_type_instance)
+    @test string(DocumenterQuarto.@doc(f)) == "Returns \"Int\".\n\nReturns \"String\".\n"
+    @test string(DocumenterQuarto.@doc(f(::Int))) == "Returns \"Int\".\n"
+    @test string(DocumenterQuarto.@doc(f(::String))) == "Returns \"String\".\n"
+
+end
