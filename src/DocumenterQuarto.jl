@@ -285,6 +285,13 @@ end
 Automatically process and return documentation for symbols in the provided 
 module. If no symbols are provided, all exported symbols are used. The 
 `delimiter` keyword argument is printed in between each documented name.
+
+## Example
+
+```julia
+import LinearAlgebra
+DocumenterQuarto.autodoc(LinearAlgebra)
+```
 """
 function autodoc(mod::Module, symbols::Symbol...; delimiter=md"{{< pagebreak >}}")
     svec = isempty(symbols) ? Base.names(mod) : symbols
@@ -355,6 +362,15 @@ function process_xref(markdown)
     return markdown
 end
 
+"""
+Given standard Julia Markdown, return identical content converted to Quarto markdown.
+
+## Example
+
+```julia
+process(Base.Docs.@doc(@time))
+```
+"""
 function process(markdown)
     return (
         markdown
@@ -367,6 +383,12 @@ end
 """
 Return the documentation string associated with the provided name, with 
 substitutions to allow for compatibility with [Quarto](https://quarto.org).
+
+## Example
+
+```julia
+doc(Main, :Int)
+```
 """
 function doc(mod::Module, sym::Symbol; header::Int = 2)
     parent = which(mod, sym)
@@ -378,6 +400,29 @@ function doc(mod::Module, sym::Symbol; header::Int = 2)
         process(docmkd),
         Markdown.parse(":::")
     )
+end
+
+"""
+Return documentation for a Julia symbol as Quarto Markdown.
+
+## Example
+
+This macro takes the output of `Base.Docs.@doc` (available by-default in Julia code)
+and calls `DocumenterQuarto.process` on the result to convert the docstring to Quarto
+Markdown.
+
+```julia
+import DocumenterQuarto: @doc
+
+@doc @time
+```
+"""
+macro doc(expr)
+    quote
+        let docmd = Base.Docs.@doc($expr)
+            DocumenterQuarto.process(docmd)
+        end
+    end
 end
 
 end # module QuartoDocumenter

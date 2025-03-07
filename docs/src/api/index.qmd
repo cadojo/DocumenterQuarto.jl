@@ -20,3 +20,9 @@ DocumenterQuarto.doc(DocumenterQuarto, :generate)
 #| output: asis
 DocumenterQuarto.autodoc(DocumenterQuarto)
 ```
+
+```{julia}
+#| echo: false
+#| output: asis
+DocumenterQuarto.@doc(DocumenterQuarto.@doc)
+```
