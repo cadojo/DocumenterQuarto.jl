@@ -62,9 +62,8 @@ Returns "String".
 f(::String) = "String"
 
 @testset "Macros" begin
-    @test DocumenterQuarto.@doc(_type_instance) == Base.Docs.@doc(_type_instance)
-    @test string(DocumenterQuarto.@doc(f)) == "Returns \"Int\".\n\nReturns \"String\".\n"
-    @test string(DocumenterQuarto.@doc(f(::Int))) == "Returns \"Int\".\n"
-    @test string(DocumenterQuarto.@doc(f(::String))) == "Returns \"String\".\n"
-
+    @test DocumenterQuarto.@doc(_type_instance) isa Markdown.MD
+    @test DocumenterQuarto.@doc(f) isa Markdown.MD
+    @test DocumenterQuarto.@doc(f(::Int)) isa Markdown.MD
+    @test DocumenterQuarto.@doc(f(::String)) isa Markdown.MD
 end

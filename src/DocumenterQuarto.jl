@@ -418,9 +418,16 @@ import DocumenterQuarto: @doc
 ```
 """
 macro doc(expr)
+    clean_expr = strip(replace(string(expr), r"#=.*?=#"s => ""))
+    header = Markdown.Header{2}("`$clean_expr`")
     quote
         let docmd = Base.Docs.@doc($expr)
-            DocumenterQuarto.process(docmd)
+            Markdown.MD(
+                $header,
+                Markdown.parse(":::{.callout appearance=\"minimal\"}"),
+                DocumenterQuarto.process(docmd),
+                Markdown.parse(":::")
+            )
         end
     end
 end
