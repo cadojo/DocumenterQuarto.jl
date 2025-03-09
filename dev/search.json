@@ -94,7 +94,17 @@
     "href": "api/index.html#doc",
     "title": "Reference",
     "section": "doc",
-    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym; header)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.\n\nExample\ndoc(Main, :Int)\n\n\n\n\n\nReturn documentation for a Julia symbol as Quarto Markdown.\n\nExample\nThis macro takes the output of Base.Docs.@doc (available by-default in Julia code) and calls DocumenterQuarto.process on the result to convert the docstring to Quarto Markdown.\nimport DocumenterQuarto: @doc\n\n@doc @time",
+    "text": "doc\n\n\n\n\n\n\ndoc(mod, sym; header)\nReturn the documentation string associated with the provided name, with substitutions to allow for compatibility with Quarto.\n\nExample\ndoc(Main, :Int)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
+    ]
+  },
+  {
+    "objectID": "api/index.html#documenterquarto.doc",
+    "href": "api/index.html#documenterquarto.doc",
+    "title": "Reference",
+    "section": "DocumenterQuarto.@doc",
+    "text": "DocumenterQuarto.@doc\n\n\n\n\n\n\nReturn documentation for a Julia symbol as Quarto Markdown.\n\nExample\nThis macro takes the output of Base.Docs.@doc (available by-default in Julia code) and calls DocumenterQuarto.process on the result to convert the docstring to Quarto Markdown.\nimport DocumenterQuarto: @doc\n\n@doc @time",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Reference</span>"
     ]

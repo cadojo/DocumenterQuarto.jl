@@ -171,7 +171,7 @@ window.onload = function () {
                         const li = document.createElement('li');
                         const a = document.createElement('a');
                         a.className = 'dropdown-item';
-                        a.href = `../${version}/index.html`;
+                        a.href = `/${version}/index.html`;
 
                         // Wrap version text in a <code> element
                         const code = document.createElement('code');
@@ -290,6 +290,7 @@ window.onload = function () {
   <li><a href="#documenterquarto" id="toc-documenterquarto" class="nav-link" data-scroll-target="#documenterquarto"><code>DocumenterQuarto</code></a></li>
   <li><a href="#autodoc" id="toc-autodoc" class="nav-link" data-scroll-target="#autodoc"><code>autodoc</code></a></li>
   <li><a href="#doc" id="toc-doc" class="nav-link" data-scroll-target="#doc"><code>doc</code></a></li>
+  <li><a href="#documenterquarto.doc" id="toc-documenterquarto.doc" class="nav-link" data-scroll-target="#documenterquarto.doc"><code>DocumenterQuarto.@doc</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/cadojo/DocumenterQuarto.jl/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -389,6 +390,15 @@ window.onload = function () {
 </div>
 </div>
 <div style="page-break-after: always;"></div>
+</section>
+<section id="documenterquarto.doc" class="level2">
+<h2 class="anchored" data-anchor-id="documenterquarto.doc"><code>DocumenterQuarto.@doc</code></h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <p>Return documentation for a Julia symbol as Quarto Markdown.</p>
 <section id="example-2" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="example-2">Example</h4>
@@ -396,9 +406,12 @@ window.onload = function () {
 <div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">DocumenterQuarto</span>: @doc</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@doc</span> <span class="pp">@time</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
 </section>
+</div>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
