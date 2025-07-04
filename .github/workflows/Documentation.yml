@@ -2,8 +2,7 @@ name: Documentation
 
 on:
   push:
-    branches:
-      - main
+    branches: [master, main]
     tags: "*"
   workflow_dispatch:
 
@@ -11,15 +10,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: julia-actions/setup-julia@latest
+      - uses: julia-actions/cache@v2
       - uses: quarto-dev/quarto-actions/setup@v2
-      - uses: actions/setup-python@v4
-      - run: pip install jupyter
+      - name: Install uv and set the python version
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: '3.13'
+          # enable-cache: false
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.13'
+      - run: uv pip install jupyter
 
       - name: Install Documentation Dependencies
         run: julia --project=docs -e 'using Pkg; Pkg.develop(PackageSpec(path = @__DIR__)); Pkg.instantiate(); Pkg.build()'
-
       - name: Build and deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For authentication with GitHub Actions token
